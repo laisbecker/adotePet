@@ -1,8 +1,5 @@
 function adicionarPet(event) {
 
-
-    /* ======= Capturou os valores do formulario  ======= */
-
     event.preventDefault() // evita da tela recarregar :)
 
     const foto = document.getElementById('foto').value
@@ -70,7 +67,7 @@ function adicionarPet(event) {
             // criado: new Date().toLocaleDateString()
         }
 
-        let listaNoLocalStorage = JSON.parse(localStorage.getItem("pets"))    // vai no local storage e pega a lista
+        let listaNoLocalStorage = JSON.parse(localStorage.getItem("pets")) // vai no local storage e pega a lista
 
         if (listaNoLocalStorage === null) listaNoLocalStorage = []
 
@@ -79,12 +76,12 @@ function adicionarPet(event) {
         localStorage.setItem("pets", JSON.stringify(listaNoLocalStorage)) // salvar no local storage
 
         document.getElementById('form-pet').reset()
-
+        document.getElementById('visualizacao-url').src = ""
     }
     
 }
 
-document // seu documento HTML
+document // meu documento HTML
     .getElementById('form-pet') // ir no documento e localizar o elemento com id form-pet
     .addEventListener('submit', adicionarPet) // adicionar um evento de submissão vinculado a funcao adicionar pet
 
@@ -95,17 +92,13 @@ document.getElementById("foto").addEventListener("input", function (event) {
 })
 
 document.getElementById("descricao").addEventListener('blur', function (element) {
-    // console.log(this.value)
-    // console.log(element.target.value)
-    // console.log(document.getElementById("descricao").value)
+
     let valorDigitado = this.value
 
     const palavrasInadequadas = ["java", "github", "capivara", "pamonha", "delphin"]
-    //console.log(palavrasInadequadas[10])
 
     palavrasInadequadas.forEach((palavra) => {
          if(valorDigitado.includes(palavra)) {
-           // console.log("Tem a palavra na string", palavra)
            valorDigitado = valorDigitado.replaceAll(palavra, '****')
          }
     })
